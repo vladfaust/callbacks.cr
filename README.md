@@ -16,7 +16,7 @@ Add this to your application's `shard.yml`:
 ```yaml
 dependencies:
   callbacks:
-    github: vladfaust/callbacks
+    github: vladfaust/callbacks.cr
     version: ~> 0.1.0
 ```
 
