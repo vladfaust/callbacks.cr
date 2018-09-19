@@ -84,7 +84,7 @@ class Bar < Foo
 end
 
 Bar.new.call
-# 7, 1, 2, 8, 3, 4, 9, 5
+# 7, 1, 2, 8, 3, call, 4, 9, 5
 ```
 
 ## Contributing
