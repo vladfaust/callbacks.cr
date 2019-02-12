@@ -12,6 +12,10 @@ An expressive callbacks module for [Crystal](https://crystal-lang.org/).
 
 [![Become a Patron](https://vladfaust.com/img/patreon-small.svg)](https://www.patreon.com/vladfaust)
 
+## About
+
+Callbacks defined with this module are properly inherited and run within a scope of the object itself (i.e. have an access to instance variables etc.).
+
 ## Installation
 
 Add this to your application's `shard.yml`:
@@ -20,7 +24,7 @@ Add this to your application's `shard.yml`:
 dependencies:
   callbacks:
     github: vladfaust/callbacks.cr
-    version: ~> 0.1.1
+    version: ~> 0.2.0
 ```
 
 This shard follows [Semantic Versioning 2.0.0](https://semver.org/), so see [releases](https://github.com/vladfaust/callbacks.cr/releases) and change the `version` accordingly.
@@ -38,30 +42,24 @@ class Foo
   end
 
   before do
-    puts "1"; true # Must return truthy value for the callchain to proceed
+    puts "1"
   end
 
   before do
-    puts "2"; true
+    puts "2"
   end
 
-  around do
+  after do
     puts "3"
-    yield
+  end
+
+  after do
     puts "4"
-  end
-
-  after do
-    puts "5"
-  end
-
-  after do
-    puts "6" # Will not be called because previous after callback returned falsey value
   end
 end
 
 Foo.new.call
-# 1, 2, 3, call, 4, 5
+# 1, 2, call, 3, 4
 ```
 
 Objects including `Callbacks` module can also be inherited preserving all callbacks:
@@ -70,24 +68,17 @@ Objects including `Callbacks` module can also be inherited preserving all callba
 class Bar < Foo
   # Childrens before callbacks have higher precedence
   before do
-    puts "7"; true
-  end
-
-  # Childrens around callbacks are higher in the stack
-  around do
-    puts "8"
-    yield
-    puts "9"
+    puts "5"
   end
 
   # Childrens after callbacks executed after parents'
   after do
-    puts "10" # Will not be called as well because Foo's arounds stop at 5
+    puts "6"
   end
 end
 
 Bar.new.call
-# 7, 1, 2, 8, 3, call, 4, 9, 5
+# 5, 1, 2, call, 3, 4, 6
 ```
 
 ## Contributing
