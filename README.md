@@ -10,7 +10,13 @@
 
 An expressive callbacks module for [Crystal](https://crystal-lang.org/).
 
-[![Become a Patron](https://vladfaust.com/img/patreon-small.svg)](https://www.patreon.com/vladfaust)
+## Supporters
+
+Thanks to all my patrons, I can build and support beautiful Open Source Software! 🙏
+
+[Lauri Jutila](https://github.com/ljuti)
+
+[![Become Patron](https://vladfaust.com/img/patreon-small.svg)](https://www.patreon.com/vladfaust)
 
 ## About
 
