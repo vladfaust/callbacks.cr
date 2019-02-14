@@ -1,0 +1,28 @@
+version: v1.0
+name: callbacks.cr
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+blocks:
+  - name: "Install shards"
+    task:
+      jobs:
+      - name: Install shards
+        commands:
+          - checkout
+          - docker run -v ${PWD}:/x -w /x crystallang/crystal:latest bash -c "/usr/bin/shards install"
+          - cache has_key shards-$SEMAPHORE_GIT_BRANCH-revision-$(checksum shard.lock) || shards install
+  - name: "Run specs"
+    task:
+      jobs:
+      - name: Spec
+        commands:
+          - checkout
+          - cache restore shards-$SEMAPHORE_GIT_BRANCH-revision-$(checksum shard.lock)
+          - docker run -v ${PWD}:/x -w /x crystallang/crystal:latest bash -c "/usr/bin/crystal spec"
+      - name: Docs
+        commands:
+          - checkout
+          - cache restore shards-$SEMAPHORE_GIT_BRANCH-revision-$(checksum shard.lock)
+          - docker run -v ${PWD}:/x -w /x crystallang/crystal:latest bash -c "/usr/bin/crystal docs"
