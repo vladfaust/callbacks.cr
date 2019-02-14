@@ -12,17 +12,17 @@ blocks:
         commands:
           - checkout
           - docker run -v ${PWD}:/x -w /x crystallang/crystal:latest bash -c "/usr/bin/shards install"
-          - cache has_key shards-$SEMAPHORE_GIT_BRANCH-revision-$(checksum shard.lock) || shards install
+          - cache has_key shards-$SEMAPHORE_GIT_BRANCH-revision-$SEMAPHORE_PIPELINE_ID || shards install
   - name: "Run specs"
     task:
       jobs:
       - name: Spec
         commands:
           - checkout
-          - cache restore shards-$SEMAPHORE_GIT_BRANCH-revision-$(checksum shard.lock)
+          - cache restore shards-$SEMAPHORE_GIT_BRANCH-revision-$SEMAPHORE_PIPELINE_ID
           - docker run -v ${PWD}:/x -w /x crystallang/crystal:latest bash -c "/usr/bin/crystal spec"
       - name: Docs
         commands:
           - checkout
-          - cache restore shards-$SEMAPHORE_GIT_BRANCH-revision-$(checksum shard.lock)
+          - cache restore shards-$SEMAPHORE_GIT_BRANCH-revision-$SEMAPHORE_PIPELINE_ID
           - docker run -v ${PWD}:/x -w /x crystallang/crystal:latest bash -c "/usr/bin/crystal docs"
