@@ -1,0 +1,13 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: crystallang/crystal:latest
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: shards install
+      - run:
+          name: Run the specs
+          command: crystal spec
