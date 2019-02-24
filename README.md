@@ -15,7 +15,7 @@ An expressive callbacks module for [Crystal](https://crystal-lang.org/).
 
 Thanks to all my patrons, I can build and support beautiful Open Source Software! 🙏
 
-[Lauri Jutila](https://github.com/ljuti), [Alexander Maslov](https://seendex.ru)
+[Lauri Jutila](https://github.com/ljuti), [Alexander Maslov](https://seendex.ru), Dainel Vera
 
 *You can become a patron too in exchange of prioritized support and other perks*
 
