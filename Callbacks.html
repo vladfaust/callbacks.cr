@@ -206,7 +206,9 @@
         <a class="method-permalink" href="#after(&block)-macro">#</a>
       </div>
       
-        <div class="doc"><p>Add after callback.</p>
+        <div class="doc">
+          
+          <p>Add after callback.</p>
 
 <p>Further after callbacks are called later in the scope of a single object. When defined in children, their after callbacks have lower precedence:</p>
 
@@ -229,7 +231,8 @@
 <span class="k">end</span>
 
 <span class="t">Bar</span>.<span class="k">new</span>.with_callbacks { puts <span class="s">&quot;call&quot;</span> }
-<span class="c"># =&gt; call, 1, 2, 3</span></code></pre></div>
+<span class="c"># =&gt; call, 1, 2, 3</span></code></pre>
+        </div>
       
       <br/>
       <div>
@@ -247,7 +250,9 @@
         <a class="method-permalink" href="#before(&block)-macro">#</a>
       </div>
       
-        <div class="doc"><p>Add before callback.</p>
+        <div class="doc">
+          
+          <p>Add before callback.</p>
 
 <p>Further before callbacks are called later in the scope of a single object. When defined in children, their before callbacks have higher precedence:</p>
 
@@ -270,7 +275,8 @@
 <span class="k">end</span>
 
 <span class="t">Bar</span>.<span class="k">new</span>.with_callbacks { puts <span class="s">&quot;call&quot;</span> }
-<span class="c"># =&gt; 3, 1, 2, call</span></code></pre></div>
+<span class="c"># =&gt; 3, 1, 2, call</span></code></pre>
+        </div>
       
       <br/>
       <div>
